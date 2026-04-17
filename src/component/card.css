@@ -1,0 +1,210 @@
+/* ============================================
+   Movie Card — Premium Glass-Dark Design
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Card Container */
+.movie-card {
+    position: relative;
+    width: 220px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #1a1d29, #12141d);
+    overflow: hidden;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        0 4px 12px rgba(99, 102, 241, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Poster Section */
+.movie-card__poster {
+    position: relative;
+    width: 100%;
+    height: 310px;
+    overflow: hidden;
+}
+
+.movie-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.4s ease;
+}
+
+.movie-card:hover .movie-card__image {
+    transform: scale(1.08);
+    filter: brightness(0.85);
+}
+
+/* Gradient overlay at bottom of poster */
+.movie-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, #12141d 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* ============================================
+   Favorite Heart Button
+   ============================================ */
+.movie-card__favorite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card__favorite .heart-icon {
+    fill: transparent;
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.movie-card__favorite:hover {
+    background: rgba(239, 68, 68, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
+}
+
+.movie-card__favorite:hover .heart-icon {
+    stroke: #ef4444;
+}
+
+/* Active (favorited) state */
+.movie-card__favorite--active {
+    background: rgba(239, 68, 68, 0.25);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+}
+
+.movie-card__favorite--active .heart-icon {
+    fill: #ef4444;
+    stroke: #ef4444;
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5));
+}
+
+.movie-card__favorite--active:hover {
+    background: rgba(239, 68, 68, 0.35);
+}
+
+/* Heart beat animation on click */
+.movie-card__favorite:active {
+    transform: scale(0.9);
+}
+
+/* ============================================
+   Rating Badge (top-left of poster)
+   ============================================ */
+.movie-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 3;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card__badge .badge-star {
+    fill: #fbbf24;
+    filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.4));
+}
+
+.movie-card__badge span {
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ============================================
+   Card Info Section
+   ============================================ */
+.movie-card__info {
+    padding: 14px 16px 18px;
+}
+
+.movie-card__title {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.movie-card:hover .movie-card__title {
+    color: #ffffff;
+}
+
+/* Star Rating Row */
+.movie-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.movie-card__stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.star {
+    transition: transform 0.2s ease;
+}
+
+.star-filled {
+    fill: #fbbf24;
+    filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.3));
+}
+
+.star-empty {
+    fill: #4b5563;
+}
+
+.movie-card__score {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #9ca3af;
+    letter-spacing: 0.02em;
+}

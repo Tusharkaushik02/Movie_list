@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './card.css'
+import { useFav } from '../context/fav'
 
 function Card({ title, image, rating, onFavoriteToggle, isFavorite: initialFavorite = false }) {
     const [isFavorite, setIsFavorite] = useState(initialFavorite)
+    const { addfav, removefav } = useFav()
 
     const handleFavorite = (e) => {
         e.stopPropagation()
@@ -63,8 +65,8 @@ function Card({ title, image, rating, onFavoriteToggle, isFavorite: initialFavor
 
                 {/* Favorite Heart Button */}
                 <button
+                    onClick={() => { addfav(title) }}
                     className={`movie-card__favorite ${isFavorite ? 'movie-card__favorite--active' : ''}`}
-                    onClick={handleFavorite}
                     aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                     id="favorite-toggle-btn"
                 >

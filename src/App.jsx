@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './component/Navbar'
 import Home from './pages/Home'
 import Favourites from './pages/Favourites'
+import { FavProvider } from './context/fav'
 
 function App() {
   const [search, setSearch] = useState('')
@@ -27,15 +28,17 @@ function App() {
   ]
 
   return (
-    <Router>
-      <div className="home">
-        <Navbar search={search} setSearch={setSearch} />
-        <Routes>
-          <Route path="/" element={<Home search={search} movies={movies} />} />
-          <Route path="/favourites" element={<Favourites />} />
-        </Routes>
-      </div>
-    </Router>
+    <FavProvider>
+      <Router>
+        <div className="home">
+          <Navbar search={search} setSearch={setSearch} />
+          <Routes>
+            <Route path="/" element={<Home search={search} movies={movies} />} />
+            <Route path="/favourites" element={<Favourites />} />
+          </Routes>
+        </div>
+      </Router>
+    </FavProvider>
   )
 }
 

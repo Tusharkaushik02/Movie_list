@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect, useContext, Children } from 'react'
 
-const favcontext = createContext()
+const FavContext = createContext()
 
-export const favProvider = ({ Children }) => {
+export const FavProvider = ({ children }) => {
     const [fav, setFav] = useState([])
 
     useEffect(() => {
@@ -25,8 +25,8 @@ export const favProvider = ({ Children }) => {
     }
 
     return (
-        <favcontext.Provider value={{ fav, addfav, removefav }}>
+        <FavContext.Provider value={{ fav, addfav, removefav }}>
             {children}
-        </favcontext.Provider>
+        </FavContext.Provider>
     )
 }

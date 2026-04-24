@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../component/card'
-import { useFav } from '../context/fav'
+
 
 function Home({ search, movies }) {
     const filtered = movies.filter((movie) =>

@@ -2,6 +2,10 @@ import { createContext, useState, useEffect, useContext, Children } from 'react'
 
 const FavContext = createContext()
 
+export { FavContext }
+
+export const useFav = () => useContext(FavContext)
+
 export const FavProvider = ({ children }) => {
     const [fav, setFav] = useState([])
 

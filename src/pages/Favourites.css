@@ -73,6 +73,16 @@
     line-height: 1.5;
 }
 
+/* Favourites Grid — side by side */
+.favourites-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
 /* Animations */
 @keyframes heartPulse {
     0%, 100% { transform: scale(1); }

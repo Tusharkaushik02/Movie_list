@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './card.css'
 import { useFav } from '../context/fav'
 
-function Card({ title, image, rating, onFavoriteToggle, isFavorite: initialFavorite = false }) {
-    const [isFavorite, setIsFavorite] = useState(initialFavorite)
-    const { addfav, removefav } = useFav()
+function Card({ title, image, rating }) {
+    const { fav, addfav, removefav } = useFav()
+
+    const isFavorite = fav.some((m) => m.title === title)
 
     const handleFavorite = (e) => {
         e.stopPropagation()
-        setIsFavorite(!isFavorite)
-        if (onFavoriteToggle) onFavoriteToggle(!isFavorite)
+        const movie = { title, image, rating }
+        if (isFavorite) {
+            removefav(movie)
+        } else {
+            addfav(movie)
+        }
     }
 
     // Generate star rating display
@@ -65,7 +70,7 @@ function Card({ title, image, rating, onFavoriteToggle, isFavorite: initialFavor
 
                 {/* Favorite Heart Button */}
                 <button
-                    onClick={() => { addfav(title) }}
+                    onClick={handleFavorite}
                     className={`movie-card__favorite ${isFavorite ? 'movie-card__favorite--active' : ''}`}
                     aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                     id="favorite-toggle-btn"
